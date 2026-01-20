@@ -1,1 +1,32 @@
+import random
 
+def jouer_au_juste_prix():
+    print("--- Bienvenue au Juste Prix ! ---")
+    
+    # 1. L'ordinateur choisit un nombre entre 1 et 100
+    nombre_secret = random.randint(1, 100)
+    tentatives = 0
+    trouve = False
+
+    # 2. La boucle continue tant que l'utilisateur n'a pas trouvé
+    while not trouve:
+        try:
+            # Demander un nombre à l'utilisateur
+            proposition = int(input("Devinez le nombre (entre 1 et 100) : "))
+            tentatives += 1 # On compte un essai de plus
+
+            # 3. Comparer la proposition au nombre secret
+            if proposition < nombre_secret:
+                print("C'est plus ! 📈")
+            elif proposition > nombre_secret:
+                print("C'est moins ! 📉")
+            else:
+                print(f"Bravo ! Tu as trouvé le nombre {nombre_secret} en {tentatives} tentatives ! 🏆")
+                trouve = True # On sort de la boucle
+        
+        except ValueError:
+            # Si l'utilisateur tape du texte au lieu d'un chiffre
+            print("Oups ! Il faut entrer un nombre entier.")
+
+# Lancer le jeu
+jouer_au_juste_prix()
